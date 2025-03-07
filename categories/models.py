@@ -3,6 +3,7 @@ from users.models import Profile
 
 
 class Category(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField()
     min_points = models.IntegerField()

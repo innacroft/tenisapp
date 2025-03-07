@@ -1,0 +1,23 @@
+<!-- filepath: /home/inna/Documents/Repo/tenisapp/templates/admin/index.html -->
+{% extends "admin/index.html" %}
+
+{% block content %}
+{{ block.super }}
+<div class="app-csv module">
+    <table class="table table-striped table-bordered">
+        <caption class="caption">
+            <a >Configuración de usuarios</a>
+        </caption>
+        <tbody>
+            <tr class="model">
+                <th scope="row">
+                    <a href="{% url 'upload_csv' %}">Cargar usuarios desde archivo</a>
+                </th>
+                <td>
+                    <p class="admin-description">Upload a CSV file to import data.</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
