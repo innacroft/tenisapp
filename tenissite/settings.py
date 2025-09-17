@@ -28,11 +28,48 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*'] #TODO REMOVE THIS
 
-CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    "https://sub.example.com",
+# Configuraciones para CSRF con ngrok
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:5500",
     "http://localhost:8000",
-    "http://127.0.0.1:9000",
+    "http://localhost:8080",
+    "http://localhost:5173",
+    "https://*.ngrok-free.app",  # Permite cualquier subdominio de ngrok
+    "https://*.ngrok.io",        # Por si usas ngrok.io
+]
+
+# Para desarrollo, permite CSRF desde cualquier origen
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SAMESITE = 'Lax'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",
+    "https://6d20c267c8e5.ngrok-free.app",
+    "http://127.0.0.1:4040",
+    "http://localhost:8000",
+    "http://localhost:8080",
+    "http://localhost:5173",
+]
+
+# Para desarrollo con ngrok - permite todos los orígenes
+CORS_ALLOWED_ALL_ORIGINS = True
+
+# Configuraciones adicionales para ngrok
+CORS_ALLOW_CREDENTIALS = True
+
+# Headers adicionales para ngrok
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'ngrok-skip-browser-warning',  # Header específico para ngrok
 ]
 # Application definition
 
@@ -46,13 +83,13 @@ CORS_ALLOW_METHODS = (
 )
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'rest_framework',
     'users',
     'categories',
